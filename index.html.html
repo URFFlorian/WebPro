@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebPro - Professionelle Webseiten für Kleinunternehmen</title>
+    <style>
+        /* Grundlegende Stile */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --light-text: #fff;
+            --success-color: #27ae60;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://source.unsplash.com/random/1600x900/?business,office') no-repeat center center/cover;
+            color: var(--light-text);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 5rem 0;
+            background-color: var(--light-color);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .service-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Portfolio Section */
+        .portfolio {
+            padding: 5rem 0;
+            background-color: var(--light-color);
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .portfolio-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(44, 62, 80, 0.8);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            padding: 5rem 0;
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            display: none;
+        }
+        
+        .testimonial.active {
+            display: block;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .testimonial-company {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .testimonial-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .testimonial-control {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background-color: var(--light-color);
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .contact-info h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-icon {
+            margin-right: 1rem;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .form-message {
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            text-align: center;
+            display: none;
+        }
+        
+        .form-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        
+        .form-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--light-text);
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: var(--light-text);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                flex-direction: column;
+                padding: 1rem 0;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+                padding: 0.5rem 0;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">Web<span>Pro</span></div>
+            <div class="mobile-menu">☰</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Startseite</a></li>
+                    <li><a href="#services">Leistungen</a></li>
+                    <li><a href="#about">Über uns</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#testimonials">Referenzen</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>Professionelle Webseiten für Kleinunternehmen</h1>
+            <p>Wir erstellen maßgeschneiderte, responsive Webseiten, die Ihr Unternehmen online optimal präsentieren und neue Kunden gewinnen.</p>
+            <a href="#contact" class="btn">Kostenlose Beratung anfordern</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Unsere Leistungen</h2>
+                <p>Wir bieten umfassende Web-Lösungen speziell für Kleinunternehmen</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3>Webdesign</h3>
+                    <p>Modernes, responsives Design, das auf allen Geräten perfekt aussieht und Ihre Marke optimal repräsentiert.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚀</div>
+                    <h3>SEO-Optimierung</h3>
+                    <p>Suchmaschinenoptimierung, damit Ihre Webseite von potenziellen Kunden gefunden wird.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛒</div>
+                    <h3>E-Commerce</h3>
+                    <p>Online-Shops, mit denen Sie Ihre Produkte und Dienstleistungen einfach verkaufen können.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Mobile Optimierung</h3>
+                    <p>Optimierung für Smartphones und Tablets, wo immer mehr Nutzer surfen.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Wartung & Support</h3>
+                    <p>Laufende Pflege und Aktualisierung Ihrer Webseite für langfristigen Erfolg.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Analytics & Berichte</h3>
+                    <p>Detaillierte Einblicke in das Nutzerverhalten auf Ihrer Webseite.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Über uns</h2>
+                    <p>Wir sind ein spezialisiertes Team von Web-Experten mit Fokus auf Kleinunternehmen. Unser Ziel ist es, hochwertige Webseiten zu erschwinglichen Preisen anzubieten.</p>
+                    <p>Mit über 10 Jahren Erfahrung in der Webentwicklung verstehen wir die besonderen Anforderungen von kleinen Unternehmen und Startups. Wir bieten maßgeschneiderte Lösungen, die genau auf Ihre Bedürfnisse zugeschnitten sind.</p>
+                    <p>Unsere Philosophie ist einfach: Qualität, Zuverlässigkeit und herausragender Kundenservice. Wir arbeiten eng mit Ihnen zusammen, um sicherzustellen, dass Ihre Webseite nicht nur gut aussieht, sondern auch Ihre Geschäftsziele unterstützt.</p>
+                    <a href="#contact" class="btn">Kontaktieren Sie uns</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://source.unsplash.com/random/600x400/?team,office" alt="Unser Team">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>Unser Portfolio</h2>
+                <p>Einige unserer erfolgreichen Projekte für Kleinunternehmen</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://source.unsplash.com/random/600x400/?restaurant" alt="Restaurant Webseite">
+                    <div class="portfolio-overlay">
+                        <h3>Restaurant Bella Vista</h3>
+                        <p>Responsive Webseite mit Online-Reservierung</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://source.unsplash.com/random/600x400/?fitness" alt="Fitnessstudio Webseite">
+                    <div class="portfolio-overlay">
+                        <h3>Fit & Aktiv Studio</h3>
+                        <p>Mit Kursplan und Mitgliederbereich</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://source.unsplash.com/random/600x400/?bakery" alt="Bäckerei Webseite">
+                    <div class="portfolio-overlay">
+                        <h3>Bäckerei Schmidt</h3>
+                        <p>E-Commerce für regionale Spezialitäten</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://source.unsplash.com/random/600x400/?consulting" alt="Beratung Webseite">
+                    <div class="portfolio-overlay">
+                        <h3>Steuerberatung Müller</h3>
+                        <p>Professionelle Präsenz für Beratungsdienstleistungen</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Kundenstimmen</h2>
+                <p>Was unsere Kunden über uns sagen</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial active">
+                    <p class="testimonial-text">"Die Webseite, die WebPro für mein Restaurant erstellt hat, hat unsere Online-Reservierungen um 40% erhöht. Das Team war professionell und hat unsere Vision perfekt umgesetzt."</p>
+                    <p class="testimonial-author">Maria Schmidt</p>
+                    <p class="testimonial-company">Restaurant Bella Vista</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"Als kleines Fitnessstudio hatten wir ein begrenztes Budget. WebPro hat uns eine fantastische Webseite geliefert, die alle unsere Anforderungen erfüllt und dabei im Budget blieb."</p>
+                    <p class="testimonial-author">Thomas Weber</p>
+                    <p class="testimonial-company">Fit & Aktiv Studio</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"Der Online-Shop für unsere Bäckerei war ein großer Erfolg. Wir verkaufen jetzt unsere Spezialitäten online und haben unseren Kundenstamm erheblich erweitert."</p>
+                    <p class="testimonial-author">Anna Bauer</p>
+                    <p class="testimonial-company">Bäckerei Schmidt</p>
+                </div>
+                <div class="testimonial-controls">
+                    <button class="testimonial-control prev">❮</button>
+                    <button class="testimonial-control next">❯</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Kontaktieren Sie uns</h2>
+                <p>Lassen Sie uns über Ihr Projekt sprechen</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Kontaktinformationen</h3>
+                    <div class="contact-detail">
+                        <div class="contact-icon">📍</div>
+                        <p>Kirchengasse 12A, 2273 Hohenau an der March</p>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">📞</div>
+                        <p>+4366499770926</p>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">✉️</div>
+                        <p>furlingerflorian9@gmail.com</p>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">🕒</div>
+                        <p>Mo-Fr: 9:00-18:00 Uhr</p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <!-- FORMSPREE FORMULAR - BITTE FORMSPREE ID ERSETZEN -->
+                    <form action="https://formspree.io/f/xpwezlwd" method="POST" id="contact-form">
+                        <div class="form-message" id="form-message"></div>
+                        <input type="text" name="name" placeholder="Ihr Name" required>
+                        <input type="email" name="email" placeholder="Ihre E-Mail" required>
+                        <input type="text" name="subject" placeholder="Betreff" required>
+                        <textarea name="message" placeholder="Ihre Nachricht" required></textarea>
+                        <button type="submit" class="btn" id="submit-btn">Nachricht senden</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>WebPro</h3>
+                    <p>Professionelle Webseiten für Kleinunternehmen. Wir helfen Ihnen, online erfolgreich zu sein.</p>
+                    <div class="social-links">
+                        <a href="#">📘</a>
+                        <a href="#">📷</a>
+                        <a href="#">🐦</a>
+                        <a href="#">💼</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Leistungen</h3>
+                    <ul>
+                        <li><a href="#">Webdesign</a></li>
+                        <li><a href="#">SEO-Optimierung</a></li>
+                        <li><a href="#">E-Commerce</a></li>
+                        <li><a href="#">Mobile Optimierung</a></li>
+                        <li><a href="#">Wartung & Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Startseite</a></li>
+                        <li><a href="#services">Leistungen</a></li>
+                        <li><a href="#about">Über uns</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#contact">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Abonnieren Sie unseren Newsletter für Tipps und Angebote.</p>
+                    <form>
+                        <input type="email" placeholder="Ihre E-Mail" style="width: 100%; padding: 0.5rem; margin-bottom: 0.5rem;">
+                        <button type="submit" class="btn" style="width: 100%; padding: 0.5rem;">Abonnieren</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 WebPro. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Testimonial Slider
+        const testimonials = document.querySelectorAll('.testimonial');
+        const prevBtn = document.querySelector('.testimonial-control.prev');
+        const nextBtn = document.querySelector('.testimonial-control.next');
+        let currentTestimonial = 0;
+
+        function showTestimonial(index) {
+            testimonials.forEach(testimonial => testimonial.classList.remove('active'));
+            testimonials[index].classList.add('active');
+        }
+
+        prevBtn.addEventListener('click', function() {
+            currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        });
+
+        nextBtn.addEventListener('click', function() {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        });
+
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.querySelector('nav ul').classList.remove('active');
+                }
+            });
+        });
+
+        // Formspree Form Handling
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = this;
+            const submitBtn = document.getElementById('submit-btn');
+            const messageDiv = document.getElementById('form-message');
+            
+            // Button deaktivieren während des Sendens
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Wird gesendet...';
+            messageDiv.style.display = 'none';
+            
+            // Formular abschicken
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Erfolgsmeldung anzeigen
+                    messageDiv.className = 'form-message success';
+                    messageDiv.textContent = 'Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.';
+                    messageDiv.style.display = 'block';
+                    form.reset();
+                    
+                    // Nach 5 Sekunden Meldung ausblenden
+                    setTimeout(() => {
+                        messageDiv.style.display = 'none';
+                    }, 5000);
+                } else {
+                    throw new Error('Network response was not ok.');
+                }
+            })
+            .catch(error => {
+                // Fehlermeldung anzeigen
+                messageDiv.className = 'form-message error';
+                messageDiv.textContent = 'Es gab ein Problem beim Senden Ihrer Nachricht. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns direkt per E-Mail.';
+                messageDiv.style.display = 'block';
+            })
+            .finally(() => {
+                // Button wieder aktivieren
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Nachricht senden';
+            });
+        });
+    </script>
+</body>
+</html>
